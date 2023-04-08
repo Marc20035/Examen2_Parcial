@@ -11,6 +11,8 @@ public class Ship {
        private boolean hundido;
          public Ship(Punto p1, Punto p2, int size) {
               this.size = size;
+              this.puntoInicial = p1;
+                this.puntoFinal = p2;
               if (p1.getX() == p2.getX() && p1.getY() < p2.getY()){
                 this.orientation = CardinalPoints.NORTH;
               }else if(p1.getX() < p2.getX() && p1.getY() == p2.getY()){
@@ -28,10 +30,25 @@ public class Ship {
 
          }
 
-
-
     public int getSize() {
         return size;
+    }
+
+    public Punto getPuntoFinal() {
+
+        return puntoFinal;
+    }
+
+    public void setPuntoFinal(Punto puntoFinal) {
+        this.puntoFinal = puntoFinal;
+    }
+
+    public Punto getPuntoInicial() {
+        return puntoInicial;
+    }
+
+    public void setPuntoInicial(Punto puntoInicial) {
+        this.puntoInicial = puntoInicial;
     }
 
     public void setSize(int size) {
