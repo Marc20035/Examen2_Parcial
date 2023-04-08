@@ -79,13 +79,15 @@ public class Ship {
     public void setHundido(boolean hundido) {
         this.hundido = hundido;
     }
-    public void isSunk(){
+    public boolean isSunk(){
            if (this.toques == this.size){
                this.hundido = true;
                System.out.println("Hundido");
+               return true;
            }
+           return false;
     }
-    public void getShot(Point ShotPoint){
+    public void getShot(Punto ShotPoint){
         if (this.orientation == CardinalPoints.NORTH){
             if (ShotPoint.getX() == this.puntoInicial.getX() && ShotPoint.getY() >= this.puntoInicial.getY() && ShotPoint.getY() <= this.puntoFinal.getY()){
                 this.toques++;

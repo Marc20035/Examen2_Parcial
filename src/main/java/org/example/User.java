@@ -15,4 +15,32 @@ public class User {
         this.isAlive = true;
     }
 
+    public ArrayList<Ship> getShips() {
+        return ships;
+    }
+
+    public void setShips(ArrayList<Ship> ships) {
+        this.ships = ships;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+    public void attack(Punto shotPoint,User user)throws Exception{
+        if(this.isAlive){
+            for (Ship ship : user.getShips()) {
+                if(ship.isSunk()){
+                    ship.getShot(shotPoint);
+                }
+            }
+        }else{
+            throw new Exception("El usuario ya ha sido hundido");
+        }
+
+    }
 }
+

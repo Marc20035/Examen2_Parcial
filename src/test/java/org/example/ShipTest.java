@@ -16,7 +16,7 @@ class ShipTest {
     @org.junit.jupiter.api.Test
     void getShot() {
         Ship ship = new Ship(new Punto(1,1), new Punto(1,2), 2);
-        Point point = new Point(1,1);
-        ship.getShot(point);
+        Punto punto = new Punto(1,1);
+        ship.getShot(punto);
     }
 }
