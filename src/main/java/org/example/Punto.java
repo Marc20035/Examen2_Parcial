@@ -4,6 +4,7 @@ public class Punto {
     private int x;
     private int y;
 
+
     public Punto(int x, int y) {
         this.x = x;
         this.y = y;
@@ -24,6 +25,9 @@ public class Punto {
     public void setY(int y) {
         this.y = y;
     }
-    public void get_Ship(Punto p){
+    public void get_Ship(Punto p) {
+
     }
+
+
 }
