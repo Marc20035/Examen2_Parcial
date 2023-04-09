@@ -23,6 +23,8 @@ public class Ship {
 
               } else if (p1.getX() > p2.getX() && p1.getY() == p2.getY()){
                 this.orientation = CardinalPoints.WEST;
+              }else if(p1.getX()!=p2.getX() && p1.getY()!=p2.getY()){
+                  throw new IllegalArgumentException("Los puntos no pueden estar en diagonal");
               }
               this.toques = 0;
 
@@ -83,9 +85,8 @@ public class Ship {
            if (this.toques == this.size){
                this.hundido = true;
                System.out.println("Hundido");
-               return true;
            }
-           return false;
+           return true;
     }
     public void getShot(Punto ShotPoint){
         if (this.orientation == CardinalPoints.NORTH){
