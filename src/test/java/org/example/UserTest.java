@@ -25,13 +25,25 @@ class UserTest {
     @Test
     void getShot() {
         Ship ship = new Ship(new Punto(1,1), new Punto(1,2), 2);
-        Punto point = new Punto(1,3);
+        Punto point = new Punto(1,1);
+        Punto point2 = new Punto(1,2);
         ship.getShot(point);
+        ship.getShot(point2);
     }
 
     @Test
     void isAlive() {
-
+        Ship ship = new Ship(new Punto(1,1), new Punto(1,2), 2);
+        ArrayList<Ship> ships = new ArrayList<>();
+        ships.add(ship);
+        try {
+            User user = new User(ships);
+            user.die();
+            user.isAlive();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    //En este test probamos tanto Alive como die
     }
 
     @Test

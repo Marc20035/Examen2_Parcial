@@ -92,25 +92,25 @@ public class Ship {
         if (this.orientation == CardinalPoints.NORTH){
             if (ShotPoint.getX() == this.puntoInicial.getX() && ShotPoint.getY() >= this.puntoInicial.getY() && ShotPoint.getY() <= this.puntoFinal.getY()){
                 this.toques++;
-                System.out.println("Tocado");
+
                 this.isSunk();
             }
         }else if (this.orientation == CardinalPoints.EAST){
             if (ShotPoint.getY() == this.puntoInicial.getY() && ShotPoint.getX() >= this.puntoInicial.getX() && ShotPoint.getX() <= this.puntoFinal.getX()){
                 this.toques++;
-                System.out.println("Tocado");
+
                 this.isSunk();
             }
         }else if (this.orientation == CardinalPoints.SOUTH){
             if (ShotPoint.getX() == this.puntoInicial.getX() && ShotPoint.getY() <= this.puntoInicial.getY() && ShotPoint.getY() >= this.puntoFinal.getY()){
                 this.toques++;
-                System.out.println("Tocado");
+
                 this.isSunk();
             }
         }else if (this.orientation == CardinalPoints.WEST){
             if (ShotPoint.getY() == this.puntoInicial.getY() && ShotPoint.getX() <= this.puntoInicial.getX() && ShotPoint.getX() >= this.puntoFinal.getX()){
                 this.toques++;
-                System.out.println("Tocado");
+
                 this.isSunk();
             }
         }

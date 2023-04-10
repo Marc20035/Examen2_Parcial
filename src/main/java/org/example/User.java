@@ -30,24 +30,25 @@ public class User {
     public void setAlive(boolean alive) {
         isAlive = alive;
     }
-    public void attack(Punto shotPoint,User user)throws Exception{
-        if(shotPoint == null || user == null){
+    public void attack(Punto shotPoint,User user)throws Exception {
+        if (shotPoint == null || user == null) {
             throw new Exception("El punto o el usuario no pueden ser nulos");
-        }
-        if(isAlive){
-            for (Ship ship : user.getShips()) {
-                if(!ship.isSunk()){
-                    ship.getShot(shotPoint);
-                    System.out.println("El barco ha sido tocado");
-                    if(ship.isSunk()) {
-                        System.out.println("El barco ha sido hundido");
+        } else {
+            if (isAlive) {
+                for (Ship ship : user.getShips()) {
+                    if (ship.isSunk()) {
+                        ship.getShot(shotPoint);
+                        System.out.println("Barco Tocado,('Repito') Barco TOCADO");
+                        if (!ship.isSunk()) {
+                            System.out.println("El barco ha sido hundido");
+                        }
                     }
                 }
+            } else {
+                throw new Exception("El User esta Eliminado");
             }
-        }else{
-            throw new Exception("El User esta Eliminado");
-        }
 
+        }
     }
     public void getShot(Punto shotPoint){
         for (Ship ship : this.getShips()) {
