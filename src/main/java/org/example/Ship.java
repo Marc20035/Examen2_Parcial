@@ -9,28 +9,29 @@ public class Ship {
        public CardinalPoints orientation;
        private int toques;
        private boolean hundido;
-         public Ship(Punto p1, Punto p2, int size) {
-              this.size = size;
+       public Ship(Punto p1, Punto p2) {
+              this.size = Math.max(Math.abs(p2.getX() - p1.getX()), Math.abs(p2.getY() - p1.getY())) + 1;
               this.puntoInicial = p1;
-                this.puntoFinal = p2;
+              this.puntoFinal = p2;
               if (p1.getX() == p2.getX() && p1.getY() < p2.getY()){
                 this.orientation = CardinalPoints.NORTH;
               }else if(p1.getX() < p2.getX() && p1.getY() == p2.getY()){
                 this.orientation = CardinalPoints.EAST;
-
               } else if (p1.getX() == p2.getX() && p1.getY() > p2.getY()){
                 this.orientation = CardinalPoints.SOUTH;
-
               } else if (p1.getX() > p2.getX() && p1.getY() == p2.getY()){
                 this.orientation = CardinalPoints.WEST;
               }else if(p1.getX()!=p2.getX() && p1.getY()!=p2.getY()){
-                  throw new IllegalArgumentException("Los puntos no pueden estar en diagonal");
+                  System.out.println("Error, El Barco debe de estar en una linea recta");
+                  throw new IllegalArgumentException("El Barco debe de estar en una linea recta");
               }
               this.toques = 0;
 
               this.hundido = false;
 
-         }
+       }
+
+
 
     public int getSize() {
         return size;
@@ -88,32 +89,33 @@ public class Ship {
            }
            return true;
     }
-    public void getShot(Punto ShotPoint){
+    public boolean getShot(Punto ShotPoint){
         if (this.orientation == CardinalPoints.NORTH){
             if (ShotPoint.getX() == this.puntoInicial.getX() && ShotPoint.getY() >= this.puntoInicial.getY() && ShotPoint.getY() <= this.puntoFinal.getY()){
                 this.toques++;
-
                 this.isSunk();
+                return true;
             }
         }else if (this.orientation == CardinalPoints.EAST){
             if (ShotPoint.getY() == this.puntoInicial.getY() && ShotPoint.getX() >= this.puntoInicial.getX() && ShotPoint.getX() <= this.puntoFinal.getX()){
                 this.toques++;
-
                 this.isSunk();
+                return true;
             }
         }else if (this.orientation == CardinalPoints.SOUTH){
             if (ShotPoint.getX() == this.puntoInicial.getX() && ShotPoint.getY() <= this.puntoInicial.getY() && ShotPoint.getY() >= this.puntoFinal.getY()){
                 this.toques++;
-
                 this.isSunk();
+                return true;
             }
         }else if (this.orientation == CardinalPoints.WEST){
             if (ShotPoint.getY() == this.puntoInicial.getY() && ShotPoint.getX() <= this.puntoInicial.getX() && ShotPoint.getX() >= this.puntoFinal.getX()){
                 this.toques++;
-
                 this.isSunk();
+                return true;
             }
         }
+        return false;
     }
 
 }

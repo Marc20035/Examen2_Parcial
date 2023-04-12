@@ -2,16 +2,15 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class UserTest {
 
     @Test
     void attack() {
-        Ship ship = new Ship(new Punto(1,1), new Punto(1,2), 2);
+        Ship ship = new Ship(new Punto(1,1), new Punto(1,2));
         ArrayList<Ship> ships = new ArrayList<>();
         ships.add(ship);
         try {
@@ -24,7 +23,7 @@ class UserTest {
 
     @Test
     void getShot() {
-        Ship ship = new Ship(new Punto(1,1), new Punto(1,2), 2);
+        Ship ship = new Ship(new Punto(1,1), new Punto(1,2));
         Punto point = new Punto(1,1);
         Punto point2 = new Punto(1,2);
         ship.getShot(point);
@@ -33,7 +32,7 @@ class UserTest {
 
     @Test
     void isAlive() {
-        Ship ship = new Ship(new Punto(1,1), new Punto(1,2), 2);
+        Ship ship = new Ship(new Punto(1,1), new Punto(1,2));
         ArrayList<Ship> ships = new ArrayList<>();
         ships.add(ship);
         try {
