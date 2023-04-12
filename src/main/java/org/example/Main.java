@@ -3,6 +3,11 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         MostrarMain mostrar = new MostrarMain();
-        mostrar.mostrarJuego();
+        try {
+            mostrar.mostrarJuego();
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+
     }
 }

@@ -84,34 +84,34 @@ public class Ship {
     }
     public boolean isSunk(){
            if (this.toques == this.size){
-               this.hundido = true;
-               System.out.println("Hundido");
+               setHundido(true);
+                return true;
            }
-           return true;
+           return false;
     }
     public boolean getShot(Punto ShotPoint){
         if (this.orientation == CardinalPoints.NORTH){
             if (ShotPoint.getX() == this.puntoInicial.getX() && ShotPoint.getY() >= this.puntoInicial.getY() && ShotPoint.getY() <= this.puntoFinal.getY()){
                 this.toques++;
-                this.isSunk();
+                System.out.println("Toque");
                 return true;
             }
         }else if (this.orientation == CardinalPoints.EAST){
             if (ShotPoint.getY() == this.puntoInicial.getY() && ShotPoint.getX() >= this.puntoInicial.getX() && ShotPoint.getX() <= this.puntoFinal.getX()){
                 this.toques++;
-                this.isSunk();
+                System.out.println("Toque");
                 return true;
             }
         }else if (this.orientation == CardinalPoints.SOUTH){
             if (ShotPoint.getX() == this.puntoInicial.getX() && ShotPoint.getY() <= this.puntoInicial.getY() && ShotPoint.getY() >= this.puntoFinal.getY()){
                 this.toques++;
-                this.isSunk();
+                System.out.println("Toque");
                 return true;
             }
         }else if (this.orientation == CardinalPoints.WEST){
             if (ShotPoint.getY() == this.puntoInicial.getY() && ShotPoint.getX() <= this.puntoInicial.getX() && ShotPoint.getX() >= this.puntoFinal.getX()){
                 this.toques++;
-                this.isSunk();
+                System.out.println("Toque");
                 return true;
             }
         }

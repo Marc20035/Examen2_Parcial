@@ -10,12 +10,16 @@ class UserTest {
 
     @Test
     void attack() {
-        Ship ship = new Ship(new Punto(1,1), new Punto(1,2));
+        Frigate frigate = new Frigate(new Punto(1,1), new Punto(1,3));
         ArrayList<Ship> ships = new ArrayList<>();
-        ships.add(ship);
+        ships.add(frigate);
         try {
             User user = new User(ships,"Pedro");
             user.attack(new Punto(1,1),user);
+            user.attack(new Punto(1,2),user);
+            user.attack(new Punto(1,3),user);
+            user.attack(new Punto(1,4),user);
+            user.attack(new Punto(1,5),user);
         } catch (Exception e) {
             e.printStackTrace();
         }

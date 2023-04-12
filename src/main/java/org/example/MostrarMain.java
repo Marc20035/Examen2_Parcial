@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MostrarMain {
-    public void mostrarJuego(){
+    public void mostrarJuego() throws Exception {
         Scanner sc = new Scanner(System.in);
         int x1;
         int y1;
@@ -223,26 +223,10 @@ public class MostrarMain {
             }
         }while (!romper);
 
-        try {
-            User user2 = new User(shipsUser2, nombre2);
-            User user1 = new User(shipsUser1, nombre1);
-            while (user1.getAlive()== true ||user2.getAlive() == true) {
-                System.out.println("Es tu turno de ataque " + nombre1);
-                x1 = (int) Math.random() * 10;
-                y1 = (int) Math.random() * 10;
-                Punto p13 = new Punto(x1, y1);
-                user1.attack(p13, user2);
-                System.out.println("Es tu turno de ataque " + nombre2);
-
-                x1 = (int) Math.random() * 10;
-                y1 = (int) Math.random() * 10;
-                Punto p15 = new Punto(x1, y1);
-                user2.attack(p15, user1);
-
-            }
-        }catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        User user1 = new User(shipsUser1, nombre1);
+        User user2 = new User(shipsUser2, nombre2);
+        user1.attack(new Punto(0,0), user2);
+        user2.attack(new Punto(1,1),user1);
 
     }
 }

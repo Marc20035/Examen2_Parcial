@@ -39,13 +39,18 @@ public class User {
         } else {
             if (isAlive) {
                 for (Ship ship : user.getShips()) {
-                    if (ship.isSunk()) {
+                    if (!ship.isSunk()) {
                         ship.getShot(shotPoint);
-                        System.out.println("Barco Tocado,('Repito') Barco TOCADO");
-                        if (!ship.isSunk()) {
+                        if (ship.isSunk()) {
                             System.out.println("El barco ha sido hundido");
                         }
+                    } else if (!ship.getShot(shotPoint)) {
+                        System.out.println("Fallaste El Tiro");
+                    }else {
+                        System.out.println("El barco ya esta hundido");
                     }
+
+
                 }
             } else {
                 throw new Exception("El User esta Eliminado");
