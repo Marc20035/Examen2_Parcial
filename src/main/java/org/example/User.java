@@ -4,11 +4,9 @@ import javax.xml.namespace.QName;
 import java.util.ArrayList;
 
 public class User {
-    private String tablero[][]= new String[5][5];
     private String name;
     private ArrayList<Ship> ships;
     private boolean isAlive;
-
 
     public User(ArrayList<Ship> ships,String nombre) throws Exception{
         if(ships.size() > 0 && ships.size() <= 3){
