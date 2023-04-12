@@ -12,7 +12,25 @@ public class MostrarMain {
         int y2;
         ArrayList<Ship> shipsUser1 = new ArrayList<>();
         boolean romper = false;
-        System.out.println("Bienvenido al juego de Batalla Naval");
+        System.out.println("Bienvenido al juego de Batalla Naval \n" +
+                "Cuentas con un 5x5 de tablero, es decir, 25 espacios \n" +
+                "Un tablero como el siguiente: \n" +
+                "0 1 2 3 4 5 \n" +
+                "1 - - - - - \n" +
+                "2 - - - - - \n" +
+                "3 - - - - - \n" +
+                "4 - - - - - \n" +
+                "5 - - - - - \n" +
+                "Cada jugador tiene 3 barcos: Canoa, Fragata y Battleship \n" +
+                "La Canoa ocupa 1 espacio, la Fragata 3 y el Battleship 5 \n" +
+                "El objetivo es hundir todos los barcos del rival \n" +
+                "Para atacar, introduce las coordenadas X y Y \n" +
+                "Si el rival te ha tocado, te lo indicara \n" +
+                "Si el rival te ha hundido, te lo indicara \n" +
+                "Si destruyes todos los barcos del rival, ganaras \n" +
+                "Si te hunden todos los barcos, perderas\n" +
+                "QUE COMIENZE EL JUEGO");
+
         System.out.println("User 1 Introduce tu nombre: ");
         String nombre1 = sc.nextLine();
         System.out.println("User 2 Introduce tu nombre: ");
@@ -61,35 +79,55 @@ public class MostrarMain {
                 y2 = sc.nextInt();
                 Punto p3 = new Punto(x1, y1);
                 Punto p4 = new Punto(x2, y2);
-                Frigate frigateUser1 = new Frigate(p3, p4);
-                if (frigateUser1.getSize()==3){
-                    shipsUser1.add(frigateUser1);
-                    romper = true;
-                }else {
-                    System.out.println("Error, La Fragata solo ocupa 3 espacios");
+                if (p3.getX()<25&&p3.getY()<25&&p4.getX()<25&&p4.getY()<25&&p3.getX()>=0&&p3.getY()>=0&&p4.getX()>=0&&p4.getY()>=0) {
+                    Frigate frigateUser1 = new Frigate(p3, p4);
+                    if (frigateUser1.comprobarsize()) {
+                        System.out.println("Error, Controlado");
+                    } else {
+                        shipsUser1.add(frigateUser1);
+                        System.out.println("Fragata Colocada");
+                        romper = true;
+                    }
+                }else{
+                    System.out.println("Error, Introduce numeros entre 0 y 25 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
                 }
             } catch (Exception e) {
                 throw new IllegalArgumentException("Error, Introduce un numero");
             }
         }while (!romper);
-        System.out.println("Fragata Colocada");
-        System.out.println("Introduce los puntos del Battleship: ");
-        System.out.println("(Recordatorio): El Battleship solo ocupa 5 espacios)");
-        System.out.println("Introduce el punto 1: ");
-        System.out.println("Introduce la coordenada X: ");
-        x1 = sc.nextInt();
-        System.out.println("Introduce la coordenada Y: ");
-        y1 = sc.nextInt();
-        System.out.println("Introduce el punto 2: ");
-        System.out.println("Introduce la coordenada X: ");
-        x2 = sc.nextInt();
-        System.out.println("Introduce la coordenada Y: ");
-        y2 = sc.nextInt();
-        Punto p5 = new Punto(x1,y1);
-        Punto p6 = new Punto(x2,y2);
-        Battleship battleshipUser1 = new Battleship(p5,p6);
-        System.out.println("Battleship Colocado");
-        shipsUser1.add(battleshipUser1);
+        romper = false;
+        do {
+            System.out.println("Introduce los puntos del Battleship: ");
+            System.out.println("(Recordatorio): El Battleship solo ocupa 5 espacios)");
+            System.out.println("Introduce el punto 1: ");
+            System.out.println("Introduce la coordenada X: ");
+            x1 = sc.nextInt();
+            System.out.println("Introduce la coordenada Y: ");
+            y1 = sc.nextInt();
+            System.out.println("Introduce el punto 2: ");
+            System.out.println("Introduce la coordenada X: ");
+            x2 = sc.nextInt();
+            System.out.println("Introduce la coordenada Y: ");
+            y2 = sc.nextInt();
+            Punto p5 = new Punto(x1, y1);
+            Punto p6 = new Punto(x2, y2);
+            if (p5.getX()<25&&p5.getY()<25&&p6.getX()<25&&p6.getY()<25&&p5.getX()>=0&&p5.getY()>=0&&p6.getX()>=0&&p6.getY()>=0) {
+                Battleship battleshipUser1 = new Battleship(p5, p6);
+                if (battleshipUser1.comprobarSize()) {
+                    System.out.println("Error, Controlado");
+                } else {
+                    shipsUser1.add(battleshipUser1);
+                    System.out.println("Battleship Colocado");
+                    romper = true;
+                }
+            }else{
+                System.out.println("Error, Introduce numeros entre 0 y 25 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
+            }
+        }while (!romper);
+
+
+
+
 
 
         System.out.println(nombre2+ " Introduce Tu configuracion de barcos: ");
