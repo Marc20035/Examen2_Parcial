@@ -14,7 +14,7 @@ class UserTest {
         ArrayList<Ship> ships = new ArrayList<>();
         ships.add(ship);
         try {
-            User user = new User(ships);
+            User user = new User(ships,"Pedro");
             user.attack(new Punto(1,1),user);
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,7 +36,7 @@ class UserTest {
         ArrayList<Ship> ships = new ArrayList<>();
         ships.add(ship);
         try {
-            User user = new User(ships);
+            User user = new User(ships,"Luis");
             user.die();
             user.isAlive();
         } catch (Exception e) {
