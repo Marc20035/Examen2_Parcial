@@ -1,12 +1,14 @@
 package org.example;
 
 import javax.xml.namespace.QName;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class User {
     private String name;
     private ArrayList<Ship> ships;
     private boolean isAlive;
+    private int vidas;
 
     public User(ArrayList<Ship> ships,String nombre) throws Exception{
         if(ships.size() > 0 && ships.size() <= 3){
@@ -16,10 +18,23 @@ public class User {
         }
         this.isAlive = true;
         this.name = nombre;
+        this.vidas = 3;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public ArrayList<Ship> getShips() {
         return ships;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
     }
 
     public void setShips(ArrayList<Ship> ships) {
@@ -34,28 +49,38 @@ public class User {
         isAlive = alive;
     }
     public void attack(Punto shotPoint,User user)throws Exception {
+        int contador = 0;
         if (shotPoint == null || user == null) {
             throw new Exception("El punto o el usuario no pueden ser nulos");
         } else {
-            if (isAlive) {
+            if (user.getVidas() > 0) {
                 for (Ship ship : user.getShips()) {
                     if (!ship.isSunk()) {
                         ship.getShot(shotPoint);
                         if (ship.isSunk()) {
-                            System.out.println("El barco ha sido hundido");
+                            System.out.println("Hundido");
+                            user.setVidas(user.getVidas() - 1);
+                            contador ++;
                         }
-                    } else if (!ship.getShot(shotPoint)) {
-                        System.out.println("Fallaste El Tiro");
                     }else {
-                        System.out.println("El barco ya esta hundido");
+
+                        System.out.println("------------------------ \n" +
+                                "INFORMACION DE ESTADO: \n" +
+                                "LLevas " + contador + " barcos hundidos \n" +
+                                "Le quedan " + user.getVidas() + " vidas \n" +
+                                "------------------------");
                     }
-
-
                 }
             } else {
-                throw new Exception("El User esta Eliminado");
+                setAlive(false);
             }
-
+        }
+    }
+    public void tiroFallado(Punto shotPoint){
+        for (Ship ship : this.getShips()) {
+            if(!ship.getShot(shotPoint)){
+                System.out.println("El tiro ha fallado");
+            }
         }
     }
     public void getShot(Punto shotPoint){
@@ -67,15 +92,16 @@ public class User {
                     System.out.println("El barco ha sido hundido");
                 }
             }else {
-                System.out.println("El barco ya esta hundido");
+                System.out.println("El barco:"+ship+" ya esta hundido");
             }
         }
     }
-    public void isAlive(){
+    public boolean isAlive(){
         if(isAlive){
-            System.out.println("El User esta vivo");
+            return true;
         }else {
             System.out.println("El User esta Eliminado");
+            return false;
         }
     }
     public void die(){

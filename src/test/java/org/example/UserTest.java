@@ -20,6 +20,7 @@ class UserTest {
             user.attack(new Punto(1,3),user);
             user.attack(new Punto(1,4),user);
             user.attack(new Punto(1,5),user);
+            user.attack(new Punto(1,1),user);
         } catch (Exception e) {
             e.printStackTrace();
         }
