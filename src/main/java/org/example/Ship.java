@@ -90,30 +90,21 @@ public class Ship {
            return false;
     }
     public boolean getShot(Punto ShotPoint){
-        if (this.orientation == CardinalPoints.NORTH){
+        if (this.orientation == CardinalPoints.NORTH||this.orientation == CardinalPoints.EAST){
             if (ShotPoint.getX() == this.puntoInicial.getX() && ShotPoint.getY() >= this.puntoInicial.getY() && ShotPoint.getY() <= this.puntoFinal.getY()){
                 this.toques++;
-                System.out.println("Ataque Acertado\n" + "-----------------");
+                System.out.println("Ataque Acertado\n" + "------------------------");
                 return true;
             }
-        }else if (this.orientation == CardinalPoints.EAST){
-            if (ShotPoint.getY() == this.puntoInicial.getY() && ShotPoint.getX() >= this.puntoInicial.getX() && ShotPoint.getX() <= this.puntoFinal.getX()){
-                this.toques++;
-                System.out.println("Tocado");
-                return true;
-            }
-        }else if (this.orientation == CardinalPoints.SOUTH){
+        }else if (this.orientation == CardinalPoints.SOUTH ||this.orientation == CardinalPoints.WEST){
             if (ShotPoint.getX() == this.puntoInicial.getX() && ShotPoint.getY() <= this.puntoInicial.getY() && ShotPoint.getY() >= this.puntoFinal.getY()){
                 this.toques++;
                 System.out.println("Tocado");
                 return true;
             }
-        }else if (this.orientation == CardinalPoints.WEST){
-            if (ShotPoint.getY() == this.puntoInicial.getY() && ShotPoint.getX() <= this.puntoInicial.getX() && ShotPoint.getX() >= this.puntoFinal.getX()){
-                this.toques++;
-                System.out.println("Tocado");
-                return true;
-            }
+        } else {
+            System.out.println("Error, No se ha podido determinar la orientacion del barco");
+            throw new IllegalArgumentException("No se ha podido determinar la orientacion del barco");
         }
         return false;
     }

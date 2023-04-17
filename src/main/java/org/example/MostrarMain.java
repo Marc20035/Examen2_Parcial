@@ -153,7 +153,7 @@ public class MostrarMain {
                 System.out.println("2. EAST");
                 System.out.println("3. SOUTH");
                 System.out.println("4. WEST");
-                CardinalPoints orientacion = sc.nextLine().equals("1") ? CardinalPoints.NORTH : sc.nextLine().equals("2") ? CardinalPoints.EAST : sc.nextLine().equals("3") ? CardinalPoints.SOUTH : CardinalPoints.WEST;
+                CardinalPoints orientacion = sc.next().equals("1") ? CardinalPoints.NORTH : sc.nextLine().equals("2") ? CardinalPoints.EAST : sc.nextLine().equals("3") ? CardinalPoints.SOUTH : CardinalPoints.WEST;
 
                 System.out.println("Introduce la coordenada X: ");
                 x1 = sc.nextInt();
@@ -274,9 +274,11 @@ public class MostrarMain {
     }
     private void ganadorCompetitivo(User user1, User user2){
         if (user1.isAlive()){
-            System.out.println("El ganador es: " + user1.getName());
-        }else{
+            System.out.println(user1.getName() + " ha sido eliminado");
             System.out.println("El ganador es: " + user2.getName());
+        }else{
+            System.out.println(user2.getName() + " ha sido eliminado");
+            System.out.println("El ganador es: " + user1.getName());
         }
     }
 }

@@ -9,6 +9,7 @@ public class User {
     private ArrayList<Ship> ships;
     private boolean isAlive;
     private int vidas;
+    private int contador = 0;
 
     public User(ArrayList<Ship> ships,String nombre) throws Exception{
         if(ships.size() > 0 && ships.size() <= 3){
@@ -49,7 +50,6 @@ public class User {
         isAlive = alive;
     }
     public void attack(Punto shotPoint,User user)throws Exception {
-        int contador = 0;
         if (shotPoint == null || user == null) {
             throw new Exception("El punto o el usuario no pueden ser nulos");
         } else {
@@ -58,19 +58,19 @@ public class User {
                     if (!ship.isSunk()) {
                         ship.getShot(shotPoint);
                         if (ship.isSunk()) {
-                            System.out.println("Hundido");
+                            System.out.println("BARCO HUNDIDO \n" +
+                                    "------------------------ \n" );
                             user.setVidas(user.getVidas() - 1);
                             contador ++;
                         }
-                    }else {
-
-                        System.out.println("------------------------ \n" +
-                                "INFORMACION DE ESTADO: \n" +
-                                "LLevas " + contador + " barcos hundidos \n" +
-                                "Le quedan " + user.getVidas() + " vidas \n" +
-                                "------------------------");
                     }
                 }
+                System.out.println("------------------------ \n" +
+                        "INFORMACION DE ESTADO: \n" +
+                        "LLevas " + contador + " barcos hundidos \n" +
+                        "Le quedan " + user.getVidas() + " vidas \n" +
+                        "------------------------");
+
             } else {
                 setAlive(false);
             }
@@ -100,7 +100,6 @@ public class User {
         if(isAlive){
             return true;
         }else {
-            System.out.println("El User esta Eliminado");
             return false;
         }
     }
