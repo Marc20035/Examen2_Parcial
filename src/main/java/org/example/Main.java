@@ -1,13 +1,9 @@
 package org.example;
 
+import static org.example.MostrarMain.aux;
+
 public class Main {
     public static void main(String[] args) {
-        MostrarMain mostrar = new MostrarMain();
-        try {
-            mostrar.mostrarJuego();
-        } catch (Exception e) {
-            System.out.println("Error");
-        }
-
+        aux();
     }
 }

@@ -68,7 +68,7 @@ public class User {
                 System.out.println("------------------------ \n" +
                         "INFORMACION DE ESTADO: \n" +
                         "LLevas " + contador + " barcos hundidos \n" +
-                        "Le quedan " + user.getVidas() + " vidas \n" +
+                        "Al rival le quedan " + user.getVidas() + " vidas \n" +
                         "------------------------");
 
             } else {

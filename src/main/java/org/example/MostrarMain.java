@@ -13,7 +13,9 @@ public class MostrarMain {
         ArrayList<Ship> shipsUser1 = new ArrayList<>();
         ArrayList<Ship> shipsUser2 = new ArrayList<>();
         boolean romper = false;
-        System.out.println("Bienvenido al juego de Batalla Naval \n" +
+        System.out.println("--------------------------------------------------------\n" +
+                "BIENVENIDO AL JUEGO DE LA BATALLA NAVAL \n" +
+                "--------------------------------------------------------\n" +
                 "Cuentas con un 5x5 de tablero, es decir, 25 espacios \n" +
                 "Un tablero como el siguiente: \n" +
 
@@ -33,8 +35,8 @@ public class MostrarMain {
                 "Si te hunden todos los barcos, perderas\n" +
                 "--------------------------------------------------------\n" +
                 "QUE COMIENZE EL JUEGO\n" +
+                "(IMPORTANTE LEER LAS REGLAS/CONDICIONES)\n"+
                 "--------------------------------------------------------\n");
-
         System.out.println("User 1 Introduce tu nombre: ");
         String nombre1 = sc.nextLine();
         System.out.println("User 2 Introduce tu nombre: ");
@@ -51,27 +53,30 @@ public class MostrarMain {
                 System.out.println("2. EAST");
                 System.out.println("3. SOUTH");
                 System.out.println("4. WEST");
-                CardinalPoints orientacion = sc.nextLine().equals("1") ? CardinalPoints.NORTH : sc.nextLine().equals("2") ? CardinalPoints.EAST : sc.nextLine().equals("3") ? CardinalPoints.SOUTH : CardinalPoints.WEST;
+                try {
+                    CardinalPoints orientacion = sc.next().equals("1") ? CardinalPoints.NORTH : sc.next().equals("2") ? CardinalPoints.EAST : sc.next().equals("3") ? CardinalPoints.SOUTH : CardinalPoints.WEST;
+                    System.out.println("Introduce la coordenada X: ");
+                    x1 = sc.nextInt();
+                    System.out.println("Introduce la coordenada Y: ");
+                    y1 = sc.nextInt();
+                    x2 = x1;
+                    y2 = y1;
+                    Punto p1 = new Punto(x1, y1);
+                    Punto p2 = new Punto(x2, y2);
+                    if (p1.getX() <= 5 && p1.getY() <= 5 && p2.getX() <= 5 && p2.getY() <= 5 && p1.getX() > 0 && p1.getY() > 0 && p2.getX() > 0 && p2.getY() > 0) {
+                        Canoe canoeUser1 = new Canoe(p1, p2);
+                        canoeUser1.setOrientation(orientacion);
+                        shipsUser1.add(canoeUser1);
+                        System.out.println("Canoa Colocada");
+                        romper = true;
+                    } else {
+                        System.out.println("Error, Introduce numeros entre 1 y 5 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
+                    }
 
-                System.out.println("Introduce la coordenada X: ");
-                x1 = sc.nextInt();
-                System.out.println("Introduce la coordenada Y: ");
-                y1 = sc.nextInt();
-                x2 = x1;
-                y2 = y1;
-                Punto p1 = new Punto(x1, y1);
-                Punto p2 = new Punto(x2, y2);
-                if (p1.getX()<=5&&p1.getY()<=5&&p2.getX()<=5&&p2.getY()<=5&&p1.getX()>0&&p1.getY()>0&&p2.getX()>0&&p2.getY()>0){
-                    Canoe canoeUser1 = new Canoe(p1, p2);
-                    canoeUser1.setOrientation(orientacion);
-                    shipsUser1.add(canoeUser1);
-                    System.out.println("Canoa Colocada");
-                    romper = true;
-                }else{
-                    System.out.println("Error, Introduce numeros entre 0 y 25 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
+                } catch (Exception e) {
+                    System.out.println("Error, Introduce un numero");
                 }
-
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error, Introduce un numero");
             }
         }while (!romper);
@@ -103,7 +108,7 @@ public class MostrarMain {
                         romper = true;
                     }
                 }else{
-                    System.out.println("Error, Introduce numeros entre 0 y 25 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
+                    System.out.println("Error, Introduce numeros entre 1 y 5 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
                 }
             } catch (Exception e) {
                 throw new IllegalArgumentException("Error, Introduce un numero");
@@ -136,7 +141,7 @@ public class MostrarMain {
                     romper = true;
                 }
             }else{
-                System.out.println("Error, Introduce numeros entre 0 y 25 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
+                System.out.println("Error, Introduce numeros entre 1 y 5 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
             }
         }while (!romper);
 
@@ -170,7 +175,7 @@ public class MostrarMain {
                     System.out.println("Canoa Colocada");
                     romper = true;
                 }else{
-                    System.out.println("Error, Introduce numeros entre 0 y 25 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
+                    System.out.println("Error, Introduce numeros entre 1 y 5 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
                 }
 
             }catch (Exception e){
@@ -205,7 +210,7 @@ public class MostrarMain {
                         romper = true;
                     }
                 }else{
-                    System.out.println("Error, Introduce numeros entre 0 y 25 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
+                    System.out.println("Error, Introduce numeros entre 1 y 5 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
                 }
             } catch (Exception e) {
                 throw new IllegalArgumentException("Error, Introduce un numero");
@@ -238,7 +243,7 @@ public class MostrarMain {
                     romper = true;
                 }
             }else{
-                System.out.println("Error, Introduce numeros entre 0 y 25 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
+                System.out.println("Error, Introduce numeros entre 1 y 5 (Las Coordenadas que me has introducido \n no estan en el tablero de juego)");
             }
         }while (!romper);
         System.out.println("------------------------------------");
@@ -279,6 +284,14 @@ public class MostrarMain {
         }else{
             System.out.println(user2.getName() + " ha sido eliminado");
             System.out.println("El ganador es: " + user1.getName());
+        }
+    }
+    public static void aux(){
+        MostrarMain mostrar = new MostrarMain();
+        try {
+            mostrar.mostrarJuego();
+        } catch (Exception e) {
+            System.out.println("Error");
         }
     }
 }

@@ -14,4 +14,24 @@ public class Battleship extends Ship{
             return false;
         }
     }
+
+    @Override
+    public boolean getShot(Punto ShotPoint) {
+        if (getCasillasImpactadas().contains(ShotPoint)) {
+            System.out.println("Ya se ha atacado esa casilla\n" + "------------------------");
+            return false;
+        }
+
+        getCasillasImpactadas().add(ShotPoint);
+
+        boolean hit = super.getShot(ShotPoint);
+
+        if (hit) {
+            if (this.getToques() == this.getSize()) {
+                this.setHundido(true);
+                System.out.println("Battleship hundido\n" + "------------------------");
+            }
+        }
+        return hit;
+    }
 }

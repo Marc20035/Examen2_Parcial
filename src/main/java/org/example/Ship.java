@@ -1,6 +1,8 @@
 package org.example;
 
 import java.awt.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Ship {
        private Punto puntoFinal;
@@ -9,6 +11,8 @@ public class Ship {
        public CardinalPoints orientation;
        private int toques;
        private boolean hundido;
+       private List<Punto> casillasImpactadas = new ArrayList<>();
+
        public Ship(Punto p1, Punto p2) {
               this.size = Math.max(Math.abs(p2.getX() - p1.getX()), Math.abs(p2.getY() - p1.getY())) + 1;
               this.puntoInicial = p1;
@@ -31,10 +35,12 @@ public class Ship {
 
        }
 
-
-
     public int getSize() {
         return size;
+    }
+
+    public List<Punto> getCasillasImpactadas() {
+        return casillasImpactadas;
     }
 
     public Punto getPuntoFinal() {
@@ -90,22 +96,26 @@ public class Ship {
            return false;
     }
     public boolean getShot(Punto ShotPoint){
+
         if (this.orientation == CardinalPoints.NORTH||this.orientation == CardinalPoints.EAST){
             if (ShotPoint.getX() == this.puntoInicial.getX() && ShotPoint.getY() >= this.puntoInicial.getY() && ShotPoint.getY() <= this.puntoFinal.getY()){
                 this.toques++;
-                System.out.println("Ataque Acertado\n" + "------------------------");
+                System.out.println("------------------------\n"+"Ataque Acertado\n" + "------------------------");
+
                 return true;
             }
         }else if (this.orientation == CardinalPoints.SOUTH ||this.orientation == CardinalPoints.WEST){
             if (ShotPoint.getX() == this.puntoInicial.getX() && ShotPoint.getY() <= this.puntoInicial.getY() && ShotPoint.getY() >= this.puntoFinal.getY()){
                 this.toques++;
-                System.out.println("Tocado");
+                System.out.println("------------------------\n"+"Ataque Acertado\n" + "------------------------");
+
                 return true;
             }
         } else {
             System.out.println("Error, No se ha podido determinar la orientacion del barco");
             throw new IllegalArgumentException("No se ha podido determinar la orientacion del barco");
         }
+
         return false;
     }
 
